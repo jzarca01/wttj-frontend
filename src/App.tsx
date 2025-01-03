@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+import { Header } from "./components/Header";
+import { Column } from "./components/Column";
+
+import type { Task, Column as ColumnType } from "./types";
+
+import "./App.css";
+
+const COLUMNS: ColumnType[] = [
+  { id: "TODO", title: "Todo" },
+  { id: "IN_PROGRESS", title: "In progress" },
+  { id: "TO_TEST", title: "To test" },
+  { id: "DONE", title: "Done" },
+];
+const INITIAL_TASKS: Task[] = [
+  {
+    id: 1,
+    status: "IN_PROGRESS",
+    title: "Creer composants Card, Column",
+    description: "foo",
+  },
+  {
+    id: 2,
+    status: "TODO",
+    title: "Ajouter draggable",
+    description: "bar",
+  },
+  {
+    id: 2,
+    status: "TODO",
+    title: "Ajouter droppable",
+    description: "baz",
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Header />
+
+      <div className="p-4">
+        <div className="flex gap-8">
+          {COLUMNS.map((column: ColumnType) => {
+            return (
+              <Column
+                key={column.id}
+                column={column}
+                tasks={tasks.filter((task) => task.status === column.id)}
+              />
+            );
+          })}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
