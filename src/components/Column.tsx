@@ -1,4 +1,8 @@
 import { useDroppable } from "@dnd-kit/core";
+import {
+  verticalListSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
 
 import { Card } from "./Card";
 
@@ -15,13 +19,15 @@ export const Column = ({ column, tasks }: Props) => {
   });
 
   return (
-    <div className="flex w-80 flex-col rounded-lg bg-neutral-800 p-4">
-      <h2 className="mb-4 font-semibold text-neutral-100">{column.title}</h2>
-      <div ref={setNodeRef} className="flex flex-1 flex-col gap-4">
-        {tasks.map((task) => {
-          return <Card key={task.id} task={task} />;
-        })}
+    <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+      <div className="flex w-80 flex-col rounded-lg bg-neutral-800 p-4">
+        <h2 className="mb-4 font-semibold text-neutral-100">{column.title}</h2>
+        <div ref={setNodeRef} className="flex flex-1 flex-col gap-4">
+          {tasks.map((task) => {
+            return <Card key={task.id} task={task} />;
+          })}
+        </div>
       </div>
-    </div>
+    </SortableContext>
   );
 };

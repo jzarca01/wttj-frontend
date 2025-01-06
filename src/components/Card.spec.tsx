@@ -13,12 +13,9 @@ describe("Card", () => {
   };
 
   it("renders the card with task title and description", () => {
-    render(<Card task={mockTask} />);
-
-    // Check if title is rendered
+    const result = render(<Card task={mockTask} />);
     expect(screen.getByText("Test Task")).toBeInTheDocument();
-
-    // Check if description is rendered
     expect(screen.getByText("Test Description")).toBeInTheDocument();
+    expect(result).toMatchSnapshot();
   });
 });

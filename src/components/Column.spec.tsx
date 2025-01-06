@@ -16,8 +16,9 @@ describe("Column", () => {
   };
 
   it("renders column title correctly", () => {
-    render(<Column column={mockColumn} tasks={mockTasks} />);
+    const result = render(<Column column={mockColumn} tasks={mockTasks} />);
     expect(screen.getByText("To Do")).toBeInTheDocument();
+    expect(result).toMatchSnapshot();
   });
 
   it("renders all tasks passed as props", () => {

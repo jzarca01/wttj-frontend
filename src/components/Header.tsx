@@ -1,4 +1,3 @@
-import * as React from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
 
@@ -12,6 +11,13 @@ export const Header = () => (
       </a>
       <a href="https://react.dev" target="_blank">
         <img src={reactLogo} className="logo react" alt="React logo" />
+      </a>
+      <a href="https://www.welcometothejungle.com" target="_blank">
+        <img
+          src="https://cdn.welcometothejungle.com/wttj-front/production/assets/images/logos/wttj-2.svg"
+          className="logo"
+          alt="WTTJ logo"
+        />
       </a>
     </div>
     <h1>WTTJ Frontend test</h1>
